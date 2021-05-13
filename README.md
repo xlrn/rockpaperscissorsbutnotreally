@@ -1,2 +1,2 @@
 # rockpaperscissorsbutnotreally
-rock paper scissors but more advanced
+rock paper scissors but less advanced
