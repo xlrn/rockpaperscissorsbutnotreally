@@ -6,11 +6,11 @@ function computerPlay() {
 function pickWeapon(number) {
     switch(number) {
         case 0:
-            return "Rock."; 
+            return "Rock"; 
         case 1:
-            return "Paper.";
+            return "Paper";
         case 2:
-            return "Scissors.";
+            return "Scissors";
         default:
             return "I give up."
     }   
@@ -18,13 +18,39 @@ function pickWeapon(number) {
 
 function playRound(playerSelection, computerSelection) {
     let player = playerSelection.toLowerCase();
+    console.log(player);
     let computer = computerSelection.toLowerCase();
-    switch(player, computer) {
-        default: 
+    console.log(computer);
+    switch(true) {
+        case player == computer:
             return "It's a tie!";
+            break;
         case player == "rock" && computer == "scissors":
             return "Player wins! Rock beats Scissors!";
+            break;
         case player == "rock" && computer == "paper":
-            return "Computer wins! Paper beats Rock!"; 
+            return "Computer wins! Paper beats Rock!";
+            break; 
+        case player == "scissors" && computer == "rock":
+            return "Computer wins! Rock beats Paper!";
+            break;
+        case player == "scissors" && computer == "paper":
+            return "Player wins! Scissors beat Paper!";
+            break;
+        case player == "paper" && computer == "rock":
+            return "Player wins! Paper beats rock!";
+            break;
+        case player == "paper" && computer == "scissors":
+            return "Computer wins! Scissors beats Paper!";
+            break;
     }
+}
+
+function game() {
+    for (i = 0; i < 5; i++) {
+        let window = prompt("Rock, paper, or scissors?");
+        console.log("Playing round " + (i+1) + " out of 5");
+        console.log(playRound(window, computerPlay()));
+    }
+    return "Game Over";
 }
