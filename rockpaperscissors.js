@@ -2,6 +2,8 @@ const btn1 = document.querySelector('#1');
 const btn2 = document.querySelector('#2');
 const btn3 = document.querySelector('#3');
 
+btn1.addEventListener('click', playRound(btn1.value, computerPlay()));
+
 function computerPlay() {
     number = Math.floor(Math.random() * 3);
     return pickWeapon(number);
