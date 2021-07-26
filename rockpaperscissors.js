@@ -2,6 +2,10 @@ const btn1 = document.querySelector('#btn1');
 const btn2 = document.querySelector('#btn2');
 const btn3 = document.querySelector('#btn3');
 
+const div = document.createElement('div');
+
+
+
 btn1.addEventListener('click', () => console.log(playRound(btn1.value, computerPlay())));
 
 function computerPlay() {
