@@ -1,8 +1,8 @@
-const btn1 = document.querySelector('#1');
-const btn2 = document.querySelector('#2');
-const btn3 = document.querySelector('#3');
+const btn1 = document.querySelector('#btn1');
+const btn2 = document.querySelector('#btn2');
+const btn3 = document.querySelector('#btn3');
 
-btn1.addEventListener('click', playRound(btn1.value, computerPlay()));
+btn1.addEventListener('click', () => console.log(playRound(btn1.value, computerPlay())));
 
 function computerPlay() {
     number = Math.floor(Math.random() * 3);
