@@ -1,7 +1,7 @@
 const btn1 = document.querySelector('#btn1');
 const btn2 = document.querySelector('#btn2');
 const btn3 = document.querySelector('#btn3');
-const play = document.querySelector('#play');
+const reset = document.querySelector('#reset');
 let playerScore = 0;
 let computerScore = 0;
 
@@ -29,6 +29,7 @@ container.appendChild(round);
 btn1.addEventListener('click', () => playRound(btn1.value, computerPlay()));
 btn2.addEventListener('click', () => playRound(btn2.value, computerPlay()));
 btn3.addEventListener('click', () => playRound(btn3.value, computerPlay()));
+reset.addEventListener('click', () => resetGame());
 
 
 function computerPlay() {
@@ -102,4 +103,13 @@ function checkScore() {
     } else if (computerScore == 5) {
         winner.textContent = "Computer has reached 5 points first!"
     }
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    pscore.textContent = `Player: ${playerScore}`;
+    cscore.textContent = `Player: ${playerScore}`;
+    round.textContent = "New Game has started."
+    winner.textContent = "Play to see who will reach 5 points first."
 }
