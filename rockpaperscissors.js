@@ -1,12 +1,35 @@
 const btn1 = document.querySelector('#btn1');
 const btn2 = document.querySelector('#btn2');
 const btn3 = document.querySelector('#btn3');
+const play = document.querySelector('#play');
+let playerScore = 0;
+let computerScore = 0;
 
-const div = document.createElement('div');
+const container = document.querySelector('#container');
 
+const pscore = document.createElement('div');
+pscore.setAttribute('id', 'pscore');
+pscore.textContent = `Player: ${playerScore}`
+container.appendChild(pscore);
 
+const cscore = document.createElement('div');
+cscore.setAttribute('id', 'cscore');
+cscore.textContent = `Computer: ${computerScore}`;
+container.appendChild(cscore);
 
-btn1.addEventListener('click', () => console.log(playRound(btn1.value, computerPlay())));
+const winner = document.createElement('div');
+winner.setAttribute('id', 'winner');
+winner.textContent = "Play to see who will reach 5 points first."
+container.appendChild(winner);
+
+const round = document.createElement('div');
+round.setAttribute('id', 'round');
+container.appendChild(round);
+
+btn1.addEventListener('click', () => playRound(btn1.value, computerPlay()));
+btn2.addEventListener('click', () => playRound(btn2.value, computerPlay()));
+btn3.addEventListener('click', () => playRound(btn3.value, computerPlay()));
+
 
 function computerPlay() {
     number = Math.floor(Math.random() * 3);
@@ -33,34 +56,50 @@ function playRound(playerSelection, computerSelection) {
     console.log(computer);
     switch(true) {
         case player == computer:
-            return "It's a tie!";
+            round.textContent = "It's a tie!";
             break;
         case player == "rock" && computer == "scissors":
-            return "Player wins! Rock beats Scissors!";
+            round.textContent =  "Player wins! Rock beats Scissors!";
+            updateScore(true);
             break;
         case player == "rock" && computer == "paper":
-            return "Computer wins! Paper beats Rock!";
+            round.textContent =  "Computer wins! Paper beats Rock!";
+            updateScore(false);
             break; 
         case player == "scissors" && computer == "rock":
-            return "Computer wins! Rock beats Paper!";
+            round.textContent =  "Computer wins! Rock beats Paper!";
+            updateScore(false);
             break;
         case player == "scissors" && computer == "paper":
-            return "Player wins! Scissors beat Paper!";
+            round.textContent =  "Player wins! Scissors beat Paper!";
+            updateScore(true);
             break;
         case player == "paper" && computer == "rock":
-            return "Player wins! Paper beats rock!";
+            round.textContent =  "Player wins! Paper beats rock!";
+            updateScore(true);
             break;
         case player == "paper" && computer == "scissors":
-            return "Computer wins! Scissors beats Paper!";
+            round.textContent =  "Computer wins! Scissors beats Paper!";
+            updateScore(false);
             break;
     }
 }
 
-function game() {
-    for (i = 0; i < 5; i++) {
-        let window = prompt("Rock, paper, or scissors?");
-        console.log("Playing round " + (i+1) + " out of 5");
-        console.log(playRound(window, computerPlay()));
+function updateScore(isPlayer) {
+    if (isPlayer) {
+        playerScore++;
+        pscore.textContent = `Player: ${playerScore}`;
+    } else {
+        computerScore++;
+        cscore.textContent = `Computer: ${computerScore}`;
     }
-    return "Game Over";
+    checkScore();
+}
+
+function checkScore() {
+    if (playerScore == 5) {
+        winner.textContent = "Player has reached 5 points first!"
+    } else if (computerScore == 5) {
+        winner.textContent = "Computer has reached 5 points first!"
+    }
 }
